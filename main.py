@@ -31,7 +31,7 @@ character_schema = CharacterSchema(many=True)
 # Rota para retornar todos os dados agrupados em grupos de 20 itens
 @app.route('/search', methods=['GET'])
 def get_characters():
-    name = request.args.get('name')
+    name = request.args.get('name', default="")
     page = int(request.args.get('page', default=1))
     print (page, name)
     per_page = int(request.args.get('per_page', default=20))
