@@ -1,19 +1,21 @@
-# Projeto Full-Stack: Rick & Morty
+# Full-Stack Project: Rick and Morty
 
-Projeto desenvolvido sob a mentoria da [Eitree Academy](https://www.eitree.dev/academy/) com a finalidade de aprendizado e prática da programação Full-Stack.
+Project developed under the mentorship of [Eitree Academy](https://www.eitree.dev/academy/) for the purpose of learning and practicing Full-Stack programming.
 
-## Introdução
+## Introduction
 
-O desenvolvimento do projeto é dividido em três etapas:
-- <u>Aquisição de dados:</u> Extração de dados de documento JSON com psycopg2;
-- <u>Backend:</u> Comunicação entre o frontend e o banco de dados utilizando Flask e SQLAlchemy;
-- <u>Frontend:</u> Interface gráfica e requisições ao backend utilizando Vite+React.js.
+The development of the project is divided into three stages:
+- <u>Data acquisition:</u> Extracting data from JSON documents with psycopg2;
+- <u>Backend:</u> Communication between the frontend and the database using Flask and SQLAlchemy;
+- <u>Frontend:</u> Graphical interface and requests to the backend using React.js.
 
-## Pré-Requisitos
-Para a utilização correta deste projeto é necessária a instalação de alguns pacotes.
+<img src="./img/Diagram.png" alt="Project Diagram" />
 
-### A. Aquisição de dados
-Pacotes Python utilizados:
+## Requirements
+To correctly use this project, it is necessary to install some packages.
+
+### A. Data acquisition
+Python packages used:
 
 ```
 pip install psycopg2
@@ -21,45 +23,50 @@ pip install sqlalchemy
 ```
 
 ### B. Backend
-Primeiro de tudo é necessário ter instalado o programa [Python](https://www.python.org/downloads/).
+First of all, you need to have installed the program [Python](https://www.python.org/downloads/).
 
-Para instalar os pacotes necessários pode-se executar os comandos abaixo:
+To install the necessary packages, you can execute the commands below:
 ```
 pip install flask
 pip install flask-cors
 ```
 
-Ou ainda, é possível instalar os pacotes como o comando abaixo:
+Or, you can install the packages using the command below:
 ```
 pip install -r requirements.txt
 ```
 
 ### C. Frontend
-Para poder executar o frontend deste projeto é necessário ter instalado o programa [Node.js](https://nodejs.org/en/download/current).
+To be able to run the frontend of this project, you must have the [Node.js](https://nodejs.org/en/download/current) program installed.
 
-Além disso, é necessário instalar o pacote abaixo:
+Furthermore, you need to install the package below:
 ```
 npm install axios
 ```
 
-## 1. Aquisição de dados
-Script em linguagem Python desenvolvido com a lib psycopg2 (lib utilizada para extrair os dados de um documento JSON e com esses dados popular o banco de dados).
+## Steps details
 
-## 2. Backend
-O backend recebe as requisições do frontend e faz a comunicação com o banco de dados para obter as informações requeridas.
+The subtopics below contain details of the stages of this project.
 
-As requisições podem chegar de três formas:
-- string name: termo a ser pesquisa na base de dados na coluna name;
-- int page: termo que representa página solicitada;
-- vazia: por padrão, caso não seja fornecida informação serão solicitados os dados de 1 à 20 que compõe a primeira página (ou seja, page=1).
+### 1. Data acquisition
+Script in Python language developed with the psycopg2 lib (lib used to extract data from a JSON document and populate the database with this data).
 
-Para lidar com as requisições do frontend são utilizadas duas rotas:
-- get_characters: recebe uma string que é a pesquisa realizada pelo usuário na interface gráfica feita com React.js. Utilizando essa string, pesquisa no banco de dados por dados que contenham essa string na coluna "name". Além disso, utiliza um atributo chamado "index", que é um número inteiro positivo referente ao número da página desejada (por exemplo, index=1 retorna os itens 1 a 20 dos resultados da pesquisa; index=2 retorna os itens de 21 a 40; e assim por diante). Por padrão, caso não seja informado index, subentendesse que index=1. E caso não haja a quantidade máxima na página para retornar, retorna apenas os disponíveis (por exemplo, index=1 possui apenas 4 itens, logo, retorna apenas 21, 22, 23, 24).
-- get_by_id: retorna um item da lista selecionado pelo usuário. Possui apenas um atributo, este atributo se chama "id" e é um número inteiro positivo.
+### 2. Backend
+The backend receives requests from the frontend and communicates with the database to obtain the required information.
 
-## 3. Frontend
-O frontend do projeto é desenvolvido em React.js e possui quatro estado de exibição:
-- Home: onde o usuário pode digitar sua pesquisa em uma caixa de texto, e ao clicar no botão “Search” é redirecionado para a próxima página.
-- Loading: onde o usuário pode digitar sua pesquisa em uma caixa de texto, e ao clicar no botão “Search” é redirecionado para a próxima página.
-- Search: são exibidos os resultados relacionados à pesquisa feita, sendo que os resultados são mostrados em uma lista de paginação e que cada página desta lista irá exibir no máximo 20 itens de resultados. O usuário poderá navegar para qualquer página da lista de paginação através de um navegador no rodapé da tela. Caso o usuário clique em algum item da pesquisa, ele é redirecionado para a próxima página.
-- View: são exibidas as informações do resultado de busca selecionado na tela anterior. Caso o usuário clique no botão “Close”, ele é redirecionado novamente para o estado anterior (Search).
+Requests can come in three ways:
+- <u>string name:</u> term to be searched in the database in the name column;
+- <u>int page:</u> term that represents the requested page;
+- <u>empty:</u> by default, if no information is provided, data from 1 to 20 that makes up the first page will be requested (i.e., page=1).
+
+To handle frontend requests, two routes are used:
+- <u>get_characters:</u> receives a string that is the search performed by the user in the graphical interface made with React.js. Using this string, search the database for data that contains this string in the "name" column. Additionally, it uses an attribute called "index", which is a positive integer referring to the desired page number (for example, index=1 returns items 1 to 20 of the search results; index=2 returns items 21 to 40; and so on). By default, if index is not provided, it would be understood that index=1. And if there is not the maximum quantity on the page to return, it returns only those available (for example, index=1 has only 4 items, therefore, it only returns 21, 22, 23, 24).
+- <u>get_by_id:</u> returns a list item selected by the user. It has only one attribute, this attribute is called "id" and is a positive integer.
+
+### 3. Frontend
+The project's frontend is developed in React.js and has four view states:
+
+- <u>Home:</u> where the user can type their search in a text box, and when clicking on the “Search” button they are redirected to the next page.
+- <u>Loading:</u> where the user can type their search in a text box, and when clicking on the “Search” button they are redirected to the next page.
+- <u>Search:</u> results related to the search performed are displayed, with the results shown in a pagination list and each page in this list will display a maximum of 20 result items. The user can navigate to any page in the pagination list through a browser at the bottom of the screen. If the user clicks on an item in the search, they are redirected to the next page.
+- <u>View:</u> information about the search result selected on the previous screen is displayed. If the user clicks the “Close” button, he is redirected back to the previous state (Search).

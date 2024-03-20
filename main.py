@@ -9,7 +9,7 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS (app)
 
-# Classe para representar a tabela 'characters'
+# Class to represent the table 'characters'
 class Character(db.Model):
     __tablename__ = 'characters'
     id = db.Column(db.Integer, primary_key=True)
@@ -28,7 +28,7 @@ class CharacterSchema(ma.Schema):
 
 character_schema = CharacterSchema(many=True)
 
-# Rota para retornar todos os dados agrupados em grupos de 20 itens
+# Route to return data grouped into groups of up to 20 items
 @app.route('/search', methods=['GET'])
 def get_characters():
     name = request.args.get('name', default="")
@@ -46,7 +46,7 @@ def get_characters():
         'items': character_schema.dump(characters.items)
     })
 
-# Rota para retornar um único item pelo id
+# Route to return a single item by id
 @app.route('/search/<int:id>', methods=['GET'])
 def get_by_id(id):
     character = Character.query.get(id)
