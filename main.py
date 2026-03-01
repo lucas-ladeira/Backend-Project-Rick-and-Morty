@@ -22,8 +22,9 @@ class Character(db.Model):
     location_name = db.Column(db.String(50))
     image = db.Column(db.String(100))
 
-class CharacterSchema(ma.Schema):
+class CharacterSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
+        model = Character
         fields = ('id', 'name', 'status', 'species', 'type', 'gender', 'origin_name', 'location_name', 'image')
 
 character_schema = CharacterSchema(many=True)
